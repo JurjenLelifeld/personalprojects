@@ -1,0 +1,847 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VGRDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="VGRDataModelStoreContainer">
+    <EntitySet Name="IncidentSet" EntityType="VGRDataModel.Store.IncidentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AssignmentSet" EntityType="VGRDataModel.Store.AssignmentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MeasuringTeamSet" EntityType="VGRDataModel.Store.MeasuringTeamSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet" EntityType="VGRDataModel.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MessageSet" EntityType="VGRDataModel.Store.MessageSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MessageToUserSet" EntityType="VGRDataModel.Store.MessageToUserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MeasurementSet" EntityType="VGRDataModel.Store.MeasurementSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GpsLocationSet" EntityType="VGRDataModel.Store.GpsLocationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AssignmentSet_MeasureAssignment" EntityType="VGRDataModel.Store.AssignmentSet_MeasureAssignment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MeasurementSet_GasMeasurement" EntityType="VGRDataModel.Store.MeasurementSet_GasMeasurement" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MeasurementSet_Earthquake" EntityType="VGRDataModel.Store.MeasurementSet_Earthquake" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="IncidentAssignment" Association="VGRDataModel.Store.IncidentAssignment">
+      <End Role="Incident" EntitySet="IncidentSet" />
+      <End Role="Assignment" EntitySet="AssignmentSet" />
+    </AssociationSet>
+    <AssociationSet Name="MeasuringTeamAssignment" Association="VGRDataModel.Store.MeasuringTeamAssignment">
+      <End Role="MeasuringTeam" EntitySet="MeasuringTeamSet" />
+      <End Role="Assignment" EntitySet="AssignmentSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserMeasuringTeam" Association="VGRDataModel.Store.UserMeasuringTeam">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="MeasuringTeam" EntitySet="MeasuringTeamSet" />
+    </AssociationSet>
+    <AssociationSet Name="MessageMessage_to_user" Association="VGRDataModel.Store.MessageMessage_to_user">
+      <End Role="Message" EntitySet="MessageSet" />
+      <End Role="Message_to_user" EntitySet="MessageToUserSet" />
+    </AssociationSet>
+    <AssociationSet Name="MessageIncident" Association="VGRDataModel.Store.MessageIncident">
+      <End Role="Message" EntitySet="MessageSet" />
+      <End Role="Incident" EntitySet="IncidentSet" />
+    </AssociationSet>
+    <AssociationSet Name="MeasurementAssignment" Association="VGRDataModel.Store.MeasurementAssignment">
+      <End Role="Measurement" EntitySet="MeasurementSet" />
+      <End Role="Assignment" EntitySet="AssignmentSet" />
+    </AssociationSet>
+    <AssociationSet Name="MessageToUserUser" Association="VGRDataModel.Store.MessageToUserUser">
+      <End Role="MessageToUser" EntitySet="MessageToUserSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="MeasuringTeamUser" Association="VGRDataModel.Store.MeasuringTeamUser">
+      <End Role="MeasuringTeam" EntitySet="MeasuringTeamSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="GpsLocationMeasuringTeam" Association="VGRDataModel.Store.GpsLocationMeasuringTeam">
+      <End Role="GpsLocation" EntitySet="GpsLocationSet" />
+      <End Role="MeasuringTeam" EntitySet="MeasuringTeamSet" />
+    </AssociationSet>
+    <AssociationSet Name="GpsLocationIncident" Association="VGRDataModel.Store.GpsLocationIncident">
+      <End Role="GpsLocation" EntitySet="GpsLocationSet" />
+      <End Role="Incident" EntitySet="IncidentSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MeasureAssignment_inherits_Assignment" Association="VGRDataModel.Store.FK_MeasureAssignment_inherits_Assignment">
+      <End Role="Assignment" EntitySet="AssignmentSet" />
+      <End Role="MeasureAssignment" EntitySet="AssignmentSet_MeasureAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GasMeasurement_inherits_Measurement" Association="VGRDataModel.Store.FK_GasMeasurement_inherits_Measurement">
+      <End Role="Measurement" EntitySet="MeasurementSet" />
+      <End Role="GasMeasurement" EntitySet="MeasurementSet_GasMeasurement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Earthquake_inherits_Measurement" Association="VGRDataModel.Store.FK_Earthquake_inherits_Measurement">
+      <End Role="Measurement" EntitySet="MeasurementSet" />
+      <End Role="Earthquake" EntitySet="MeasurementSet_Earthquake" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="IncidentSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="GasMoldCode" Type="int" Nullable="false" />
+    <Property Name="GasMoldColor" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WindDirection" Type="int" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssignmentSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IncidentId" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+    <Property Name="MeasuringTeamId" Type="int" Nullable="false" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Arrived" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MeasuringTeamSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Departed" Type="bit" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MeasuringTeamId" Type="int" Nullable="true" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MessageSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+    <Property Name="SenderUserId" Type="int" Nullable="false" />
+    <Property Name="IncidentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MessageToUserSet">
+    <Key>
+      <PropertyRef Name="MessageId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="MessageId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Delivered" Type="bit" Nullable="false" />
+    <Property Name="Read" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MeasurementSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AssignmentId" Type="int" Nullable="false" />
+    <Property Name="MeasurementType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Observations" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MeasurementTime" Type="datetime" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GpsLocationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MeasuringTeamId" Type="int" Nullable="false" />
+    <Property Name="IncidentId" Type="int" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssignmentSet_MeasureAssignment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="GastubeCode" Type="int" Nullable="false" />
+    <Property Name="LelMeasurement" Type="bit" Nullable="false" />
+    <Property Name="Automess" Type="bit" Nullable="false" />
+    <Property Name="AutomessProbe" Type="bit" Nullable="false" />
+    <Property Name="DoseMeasurer" Type="bit" Nullable="false" />
+    <Property Name="BreathableAir" Type="bit" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MeasurementSet_GasMeasurement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="LelResult" Type="float" Nullable="false" />
+    <Property Name="PumpStrokes" Type="int" Nullable="false" />
+    <Property Name="FirstPumpStroke" Type="datetime" Nullable="false" />
+    <Property Name="Concentration" Type="float" Nullable="false" />
+    <Property Name="CoMeasurement" Type="float" Nullable="false" />
+    <Property Name="GasTubeCode" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MeasurementSet_Earthquake">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="VictimsState" Type="tinyint" Nullable="false" />
+    <Property Name="BuildingsState" Type="tinyint" Nullable="false" />
+    <Property Name="InfrastructureState" Type="tinyint" Nullable="false" />
+    <Property Name="VictimDetails" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BuildingDetails" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InfrastructureDetails" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="IncidentAssignment">
+    <End Role="Incident" Type="VGRDataModel.Store.IncidentSet" Multiplicity="1" />
+    <End Role="Assignment" Type="VGRDataModel.Store.AssignmentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Incident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Assignment">
+        <PropertyRef Name="IncidentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MeasuringTeamAssignment">
+    <End Role="MeasuringTeam" Type="VGRDataModel.Store.MeasuringTeamSet" Multiplicity="1" />
+    <End Role="Assignment" Type="VGRDataModel.Store.AssignmentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MeasuringTeam">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Assignment">
+        <PropertyRef Name="MeasuringTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserMeasuringTeam">
+    <End Role="User" Type="VGRDataModel.Store.UserSet" Multiplicity="*" />
+    <End Role="MeasuringTeam" Type="VGRDataModel.Store.MeasuringTeamSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="MeasuringTeam">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="MeasuringTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MessageMessage_to_user">
+    <End Role="Message" Type="VGRDataModel.Store.MessageSet" Multiplicity="1" />
+    <End Role="Message_to_user" Type="VGRDataModel.Store.MessageToUserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Message">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message_to_user">
+        <PropertyRef Name="MessageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MessageIncident">
+    <End Role="Message" Type="VGRDataModel.Store.MessageSet" Multiplicity="*" />
+    <End Role="Incident" Type="VGRDataModel.Store.IncidentSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Incident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="IncidentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MeasurementAssignment">
+    <End Role="Measurement" Type="VGRDataModel.Store.MeasurementSet" Multiplicity="*" />
+    <End Role="Assignment" Type="VGRDataModel.Store.AssignmentSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Measurement">
+        <PropertyRef Name="AssignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MessageToUserUser">
+    <End Role="MessageToUser" Type="VGRDataModel.Store.MessageToUserSet" Multiplicity="*" />
+    <End Role="User" Type="VGRDataModel.Store.UserSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MessageToUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MeasuringTeamUser">
+    <End Role="MeasuringTeam" Type="VGRDataModel.Store.MeasuringTeamSet" Multiplicity="0..1" />
+    <End Role="User" Type="VGRDataModel.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MeasuringTeam">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="MeasuringTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GpsLocationMeasuringTeam">
+    <End Role="GpsLocation" Type="VGRDataModel.Store.GpsLocationSet" Multiplicity="*" />
+    <End Role="MeasuringTeam" Type="VGRDataModel.Store.MeasuringTeamSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MeasuringTeam">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GpsLocation">
+        <PropertyRef Name="MeasuringTeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GpsLocationIncident">
+    <End Role="GpsLocation" Type="VGRDataModel.Store.GpsLocationSet" Multiplicity="*" />
+    <End Role="Incident" Type="VGRDataModel.Store.IncidentSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Incident">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GpsLocation">
+        <PropertyRef Name="IncidentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MeasureAssignment_inherits_Assignment">
+    <End Role="Assignment" Type="VGRDataModel.Store.AssignmentSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MeasureAssignment" Type="VGRDataModel.Store.AssignmentSet_MeasureAssignment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MeasureAssignment">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GasMeasurement_inherits_Measurement">
+    <End Role="Measurement" Type="VGRDataModel.Store.MeasurementSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GasMeasurement" Type="VGRDataModel.Store.MeasurementSet_GasMeasurement" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Measurement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GasMeasurement">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Earthquake_inherits_Measurement">
+    <End Role="Measurement" Type="VGRDataModel.Store.MeasurementSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Earthquake" Type="VGRDataModel.Store.MeasurementSet_Earthquake" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Measurement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Earthquake">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="VGRDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="VGRDataModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="IncidentSet" EntityType="VGRDataModel.Incident" />
+          <EntitySet Name="AssignmentSet" EntityType="VGRDataModel.Assignment" />
+          <AssociationSet Name="IncidentAssignment" Association="VGRDataModel.IncidentAssignment">
+            <End Role="Incident" EntitySet="IncidentSet" />
+            <End Role="Assignment" EntitySet="AssignmentSet" />
+          </AssociationSet>
+          <EntitySet Name="MeasuringTeamSet" EntityType="VGRDataModel.MeasuringTeam" />
+          <AssociationSet Name="MeasuringTeamAssignment" Association="VGRDataModel.MeasuringTeamAssignment">
+            <End Role="MeasuringTeam" EntitySet="MeasuringTeamSet" />
+            <End Role="Assignment" EntitySet="AssignmentSet" />
+          </AssociationSet>
+          <EntitySet Name="UserSet" EntityType="VGRDataModel.User" />
+          <AssociationSet Name="UserMeasuringTeam" Association="VGRDataModel.UserMeasuringTeam">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="MeasuringTeam" EntitySet="MeasuringTeamSet" />
+          </AssociationSet>
+          <EntitySet Name="MessageSet" EntityType="VGRDataModel.Message" />
+          <EntitySet Name="MessageToUserSet" EntityType="VGRDataModel.MessageToUser" />
+          <AssociationSet Name="MessageMessage_to_user" Association="VGRDataModel.MessageMessage_to_user">
+            <End Role="Message" EntitySet="MessageSet" />
+            <End Role="Message_to_user" EntitySet="MessageToUserSet" />
+          </AssociationSet>
+          <AssociationSet Name="MessageIncident" Association="VGRDataModel.MessageIncident">
+            <End Role="Message" EntitySet="MessageSet" />
+            <End Role="Incident" EntitySet="IncidentSet" />
+          </AssociationSet>
+          <EntitySet Name="MeasurementSet" EntityType="VGRDataModel.Measurement" />
+          <AssociationSet Name="MeasurementAssignment" Association="VGRDataModel.MeasurementAssignment">
+            <End Role="Measurement" EntitySet="MeasurementSet" />
+            <End Role="Assignment" EntitySet="AssignmentSet" />
+          </AssociationSet>
+          <AssociationSet Name="MessageToUserUser" Association="VGRDataModel.MessageToUserUser">
+            <End Role="MessageToUser" EntitySet="MessageToUserSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <AssociationSet Name="MeasuringTeamUser" Association="VGRDataModel.MeasuringTeamUser">
+            <End Role="MeasuringTeam" EntitySet="MeasuringTeamSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <EntitySet Name="GpsLocationSet" EntityType="VGRDataModel.GpsLocation" />
+          <AssociationSet Name="GpsLocationMeasuringTeam" Association="VGRDataModel.GpsLocationMeasuringTeam">
+            <End Role="GpsLocation" EntitySet="GpsLocationSet" />
+            <End Role="MeasuringTeam" EntitySet="MeasuringTeamSet" />
+          </AssociationSet>
+          <AssociationSet Name="GpsLocationIncident" Association="VGRDataModel.GpsLocationIncident">
+            <End Role="GpsLocation" EntitySet="GpsLocationSet" />
+            <End Role="Incident" EntitySet="IncidentSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Incident">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GasMoldCode" Type="Int32" Nullable="false" />
+          <Property Name="GasMoldColor" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="WindDirection" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Assignments" Relationship="VGRDataModel.IncidentAssignment" FromRole="Incident" ToRole="Assignment" />
+          <NavigationProperty Name="Messages" Relationship="VGRDataModel.MessageIncident" FromRole="Incident" ToRole="Message" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="GpsLocation" Relationship="VGRDataModel.GpsLocationIncident" FromRole="Incident" ToRole="GpsLocation" />
+        </EntityType>
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IncidentId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MeasuringTeamId" Type="Int32" Nullable="false" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Arrived" Type="Boolean" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Team" Relationship="VGRDataModel.MeasuringTeamAssignment" FromRole="Assignment" ToRole="MeasuringTeam" />
+          <NavigationProperty Name="Incident" Relationship="VGRDataModel.IncidentAssignment" FromRole="Assignment" ToRole="Incident" />
+          <NavigationProperty Name="Measurements" Relationship="VGRDataModel.MeasurementAssignment" FromRole="Assignment" ToRole="Measurement" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="IncidentAssignment">
+          <End Type="VGRDataModel.Incident" Role="Incident" Multiplicity="1" />
+          <End Type="VGRDataModel.Assignment" Role="Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Incident">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="IncidentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Measurement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignmentId" Type="Int32" Nullable="false" />
+          <Property Name="MeasurementType" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Observations" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MeasurementTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Assignment" Relationship="VGRDataModel.MeasurementAssignment" FromRole="Measurement" ToRole="Assignment" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MeasureAssignment" BaseType="VGRDataModel.Assignment">
+          <Property Name="GastubeCode" Type="Int32" Nullable="false" />
+          <Property Name="LelMeasurement" Type="Boolean" Nullable="false" />
+          <Property Name="Automess" Type="Boolean" Nullable="false" />
+          <Property Name="AutomessProbe" Type="Boolean" Nullable="false" />
+          <Property Name="DoseMeasurer" Type="Boolean" Nullable="false" />
+          <Property Name="BreathableAir" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MeasuringTeam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="VGRDataModel.MeasuringTeamUser" FromRole="MeasuringTeam" ToRole="User" />
+          <NavigationProperty Name="Assignments" Relationship="VGRDataModel.MeasuringTeamAssignment" FromRole="MeasuringTeam" ToRole="Assignment" />
+          <Property Name="Departed" Type="Boolean" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="GpsLocation" Relationship="VGRDataModel.GpsLocationMeasuringTeam" FromRole="MeasuringTeam" ToRole="GpsLocation" />
+        </EntityType>
+        <Association Name="MeasuringTeamAssignment">
+          <End Type="VGRDataModel.MeasuringTeam" Role="MeasuringTeam" Multiplicity="1" />
+          <End Type="VGRDataModel.Assignment" Role="Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeasuringTeam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="MeasuringTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeasuringTeamId" Type="Int32" Nullable="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneId" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Team" Relationship="VGRDataModel.MeasuringTeamUser" FromRole="User" ToRole="MeasuringTeam" />
+          <NavigationProperty Name="MessagesToUser" Relationship="VGRDataModel.MessageToUserUser" FromRole="User" ToRole="MessageToUser" />
+        </EntityType>
+        <Association Name="UserMeasuringTeam">
+          <End Type="VGRDataModel.User" Role="User" Multiplicity="*" />
+          <End Type="VGRDataModel.MeasuringTeam" Role="MeasuringTeam" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MeasuringTeam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="MeasuringTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GasMeasurement" BaseType="VGRDataModel.Measurement">
+          <Property Name="LelResult" Type="Double" Nullable="false" />
+          <Property Name="PumpStrokes" Type="Int32" Nullable="false" />
+          <Property Name="FirstPumpStroke" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Concentration" Type="Double" Nullable="false" />
+          <Property Name="CoMeasurement" Type="Double" Nullable="false" />
+          <Property Name="GasTubeCode" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Earthquake" BaseType="VGRDataModel.Measurement">
+          <Property Name="VictimsState" Type="Byte" Nullable="false" />
+          <Property Name="BuildingsState" Type="Byte" Nullable="false" />
+          <Property Name="InfrastructureState" Type="Byte" Nullable="false" />
+          <Property Name="VictimDetails" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BuildingDetails" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="InfrastructureDetails" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SenderUserId" Type="Int32" Nullable="false" />
+          <Property Name="IncidentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Incident" Relationship="VGRDataModel.MessageIncident" FromRole="Message" ToRole="Incident" />
+          <NavigationProperty Name="ToUsers" Relationship="VGRDataModel.MessageMessage_to_user" FromRole="Message" ToRole="Message_to_user" />
+        </EntityType>
+        <EntityType Name="MessageToUser">
+          <Key>
+            <PropertyRef Name="MessageId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="MessageId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Delivered" Type="Boolean" Nullable="false" />
+          <Property Name="Read" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Message" Relationship="VGRDataModel.MessageMessage_to_user" FromRole="Message_to_user" ToRole="Message" />
+          <NavigationProperty Name="User" Relationship="VGRDataModel.MessageToUserUser" FromRole="MessageToUser" ToRole="User" />
+        </EntityType>
+        <Association Name="MessageMessage_to_user">
+          <End Type="VGRDataModel.Message" Role="Message" Multiplicity="1" />
+          <End Type="VGRDataModel.MessageToUser" Role="Message_to_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message_to_user">
+              <PropertyRef Name="MessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MessageIncident">
+          <End Type="VGRDataModel.Message" Role="Message" Multiplicity="*" />
+          <End Type="VGRDataModel.Incident" Role="Incident" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Incident">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="IncidentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MeasurementAssignment">
+          <End Type="VGRDataModel.Measurement" Role="Measurement" Multiplicity="*" />
+          <End Type="VGRDataModel.Assignment" Role="Assignment" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Assignment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Measurement">
+              <PropertyRef Name="AssignmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MessageToUserUser">
+          <End Type="VGRDataModel.MessageToUser" Role="MessageToUser" Multiplicity="*" />
+          <End Type="VGRDataModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessageToUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MeasuringTeamUser">
+          <End Type="VGRDataModel.MeasuringTeam" Role="MeasuringTeam" Multiplicity="0..1" />
+          <End Type="VGRDataModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeasuringTeam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="MeasuringTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GpsLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeasuringTeamId" Type="Int32" Nullable="false" />
+          <Property Name="IncidentId" Type="Int32" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="MeasuringTeam" Relationship="VGRDataModel.GpsLocationMeasuringTeam" FromRole="GpsLocation" ToRole="MeasuringTeam" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Incident" Relationship="VGRDataModel.GpsLocationIncident" FromRole="GpsLocation" ToRole="Incident" />
+        </EntityType>
+        <Association Name="GpsLocationMeasuringTeam">
+          <End Type="VGRDataModel.GpsLocation" Role="GpsLocation" Multiplicity="*" />
+          <End Type="VGRDataModel.MeasuringTeam" Role="MeasuringTeam" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="MeasuringTeam">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GpsLocation">
+              <PropertyRef Name="MeasuringTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GpsLocationIncident">
+          <End Type="VGRDataModel.GpsLocation" Role="GpsLocation" Multiplicity="*" />
+          <End Type="VGRDataModel.Incident" Role="Incident" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Incident">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GpsLocation">
+              <PropertyRef Name="IncidentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VGRDataModelStoreContainer" CdmEntityContainer="VGRDataModelContainer">
+    <EntitySetMapping Name="IncidentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.Incident)">
+        <MappingFragment StoreEntitySet="IncidentSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="GasMoldCode" ColumnName="GasMoldCode" />
+          <ScalarProperty Name="GasMoldColor" ColumnName="GasMoldColor" />
+          <ScalarProperty Name="WindDirection" ColumnName="WindDirection" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssignmentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.Assignment)">
+        <MappingFragment StoreEntitySet="AssignmentSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="MeasuringTeamId" ColumnName="MeasuringTeamId" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Arrived" ColumnName="Arrived" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.MeasureAssignment)">
+        <MappingFragment StoreEntitySet="AssignmentSet_MeasureAssignment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GastubeCode" ColumnName="GastubeCode" />
+          <ScalarProperty Name="LelMeasurement" ColumnName="LelMeasurement" />
+          <ScalarProperty Name="Automess" ColumnName="Automess" />
+          <ScalarProperty Name="AutomessProbe" ColumnName="AutomessProbe" />
+          <ScalarProperty Name="DoseMeasurer" ColumnName="DoseMeasurer" />
+          <ScalarProperty Name="BreathableAir" ColumnName="BreathableAir" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MeasuringTeamSet">
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.MeasuringTeam)">
+        <MappingFragment StoreEntitySet="MeasuringTeamSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Departed" ColumnName="Departed" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MeasuringTeamId" ColumnName="MeasuringTeamId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="PhoneId" ColumnName="PhoneId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MessageSet">
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.Message)">
+        <MappingFragment StoreEntitySet="MessageSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="SenderUserId" ColumnName="SenderUserId" />
+          <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MessageToUserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.MessageToUser)">
+        <MappingFragment StoreEntitySet="MessageToUserSet">
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="Read" ColumnName="Read" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MeasurementSet">
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.Measurement)">
+        <MappingFragment StoreEntitySet="MeasurementSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+          <ScalarProperty Name="MeasurementType" ColumnName="MeasurementType" />
+          <ScalarProperty Name="Observations" ColumnName="Observations" />
+          <ScalarProperty Name="MeasurementTime" ColumnName="MeasurementTime" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.GasMeasurement)">
+        <MappingFragment StoreEntitySet="MeasurementSet_GasMeasurement">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LelResult" ColumnName="LelResult" />
+          <ScalarProperty Name="PumpStrokes" ColumnName="PumpStrokes" />
+          <ScalarProperty Name="FirstPumpStroke" ColumnName="FirstPumpStroke" />
+          <ScalarProperty Name="Concentration" ColumnName="Concentration" />
+          <ScalarProperty Name="CoMeasurement" ColumnName="CoMeasurement" />
+          <ScalarProperty Name="GasTubeCode" ColumnName="GasTubeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.Earthquake)">
+        <MappingFragment StoreEntitySet="MeasurementSet_Earthquake">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VictimsState" ColumnName="VictimsState" />
+          <ScalarProperty Name="BuildingsState" ColumnName="BuildingsState" />
+          <ScalarProperty Name="InfrastructureState" ColumnName="InfrastructureState" />
+          <ScalarProperty Name="VictimDetails" ColumnName="VictimDetails" />
+          <ScalarProperty Name="BuildingDetails" ColumnName="BuildingDetails" />
+          <ScalarProperty Name="InfrastructureDetails" ColumnName="InfrastructureDetails" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GpsLocationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(VGRDataModel.GpsLocation)">
+        <MappingFragment StoreEntitySet="GpsLocationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MeasuringTeamId" ColumnName="MeasuringTeamId" />
+          <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

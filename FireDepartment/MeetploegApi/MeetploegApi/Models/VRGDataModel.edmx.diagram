@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad17faafa34e432fb1f175e0deed47e2" Name="Diagram1" ZoomLevel="67" >
+        <EntityTypeShape EntityType="VGRDataModel.Incident" Width="1.5" PointX="17.875" PointY="0.75" />
+        <EntityTypeShape EntityType="VGRDataModel.Assignment" Width="1.5" PointX="13.75" PointY="1.625" />
+        <AssociationConnector Association="VGRDataModel.IncidentAssignment" />
+        <EntityTypeShape EntityType="VGRDataModel.Measurement" Width="1.5" PointX="11.25" PointY="3.75" />
+        <EntityTypeShape EntityType="VGRDataModel.MeasureAssignment" Width="2" PointX="14" PointY="7" />
+        <EntityTypeShape EntityType="VGRDataModel.User" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="VGRDataModel.GasMeasurement" Width="1.5" PointX="12.125" PointY="7" />
+        <EntityTypeShape EntityType="VGRDataModel.Earthquake" Width="1.5" PointX="10" PointY="7" />
+        <EntityTypeShape EntityType="VGRDataModel.Message" Width="1.5" PointX="20.875" PointY="6.375" />
+        <EntityTypeShape EntityType="VGRDataModel.MessageToUser" Width="1.5" PointX="6" PointY="8.25" />
+        <AssociationConnector Association="VGRDataModel.MessageMessage_to_user" />
+        <AssociationConnector Association="VGRDataModel.MessageIncident" />
+        <InheritanceConnector EntityType="VGRDataModel.MeasureAssignment" />
+        <AssociationConnector Association="VGRDataModel.MeasurementAssignment" />
+        <InheritanceConnector EntityType="VGRDataModel.GasMeasurement" />
+        <InheritanceConnector EntityType="VGRDataModel.Earthquake" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="VGRDataModel.MeasuringTeam" Width="1.5" PointX="8.25" PointY="0.5" />
+        <AssociationConnector Association="VGRDataModel.MeasuringTeamUser" />
+        <AssociationConnector Association="VGRDataModel.MeasuringTeamAssignment" />
+        <AssociationConnector Association="VGRDataModel.MessageToUserUser" />
+        <EntityTypeShape EntityType="VGRDataModel.GpsLocation" Width="1.5" PointX="11.75" PointY="0.5" />
+        <AssociationConnector Association="VGRDataModel.GpsLocationMeasuringTeam" />
+        <AssociationConnector Association="VGRDataModel.GpsLocationIncident" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
