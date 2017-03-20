@@ -1,1 +1,3 @@
 This folder contains all code I wrote for my master thesis. I decided to delve into code and write scripts and applications to process all data (instead of spending all my time on manually searching and manipulating the data). This allowed me to process 10x more data than other students using the same databases with the same timeframe.
+
+The scripts have been created to work with the Thomson Securities Data Corporation (SDC) database on Strategic Alliances. This code was written for personal use and created for very specific use and may therefore not be well documented. However, I hope some of it may be useful for others. 
