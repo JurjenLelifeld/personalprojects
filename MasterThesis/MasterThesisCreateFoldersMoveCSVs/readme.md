@@ -1,0 +1,1 @@
+This C# application automatically ordered all the data I had in the right folders. The VBA script did not do this. This was important to keep the data ordered. 

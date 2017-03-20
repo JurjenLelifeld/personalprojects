@@ -1,0 +1,1 @@
+This folder contains all code I wrote for my master thesis. I decided to delve into code and write scripts and applications to process all data (instead of spending all my time on manually searching and manipulating the data). This allowed me to process 10x more data than other students using the same databases with the same timeframe.

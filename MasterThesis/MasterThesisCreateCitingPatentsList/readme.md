@@ -1,0 +1,1 @@
+This C# application calculated the number of citing patents a company has for all it's patents in a certain year. Since some large companies had millions of citing patents on a yearly basis this allowed me to process large amounts of patent data.
