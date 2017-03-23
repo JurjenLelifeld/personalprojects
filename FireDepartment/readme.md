@@ -1,1 +1,0 @@
-I wrote this C# ASP.NET API for a project we did for the local Fire Department. We had a very tight timeline to create the whole system, therefore it is far from perfect.

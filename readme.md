@@ -1,3 +1,1 @@
-This repository contains some personal projects I wrote in the past years during my studies. Since this code was written for academic purposes I would like to share it with everyone.
-
-Feel free to use any code that is useful to you!
+This repository contained some personal projects I wrote in the past years during my studies. I decided to move the code to seperate directories on my GitHub account, so please refer to those. I will delete this repository in a short while.

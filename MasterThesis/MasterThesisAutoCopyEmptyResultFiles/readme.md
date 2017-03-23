@@ -1,1 +1,0 @@
-This C# application automatically copies empty results for each year. It was important to have these empty files in case the data was checked by other scholars. This application automatically filled up gaps with empty files that were not created by the VBA script.
